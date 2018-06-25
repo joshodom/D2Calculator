@@ -1,15 +1,33 @@
 <div>
   <div>
     <form>
-      <div>
-        <p>Level: <input type="text" name="level" [(ngModel)]="myCharacter.Level" /></p> 
-      </div><!-- 
-      <div>
-        <p>Strength: <input type="text" name="strength" [(ngModel)]="myCharacter.Strength" /></p>
+      <div class="continer">
+        <div class="row">
+          <div class="col1">
+            <div>
+              <p>Level:
+                <input type="text" name="level" [(ngModel)]="myCharacter.Level" />
+              </p>
+            </div>
+            <div>Stat points available: {{myCharacter.Level * 5}}</div>
+            <div>
+              <p>Class:
+                <select [(ngModel)]="selectedClass" name="selectedClass">
+                  <option *ngFor="let c of ClassList" value="{{c}}">{{c.Name}}</option>
+                </select>
+              </p>
+            </div>
+            <div *ngIf="selectedClass !== undefined">Items
+              <div *ngFor="let i of myCharacter.Items">{{i.Slot}}:
+                <input type="text" name="{{i.Slot}}" [(ngModel)]="i.RequiredStr" />
+              </div>
+            </div>
+          </div>
+          <div class="col2">
+            <stat-box [character]="myCharacter"></stat-box>
+          </div>
+        </div>
       </div>
-      <div>
-        <p>Dexterity: <input type="text" name="dexterity" [(ngModel)]="myCharacter.Dexterity" /></p>
-      </div> -->
     </form>
   </div>
 </div>

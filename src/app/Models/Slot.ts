@@ -1,11 +1,11 @@
 export enum Slot {
-  Neck,
-  Ring1,
-  Ring2,
-  Helm,
-  MainHand,
-  OffHand,
-  Gloves,
-  Belt,
-  Boots
+  Neck = "neck",
+  Ring1 = "ring1",
+  Ring2 = "ring2",
+  Helm = "helm",
+  MainHand = "mainhand",
+  OffHand = "offhand",
+  Gloves = "gloves",
+  Belt = "belt",
+  Boots = "boots"
 }

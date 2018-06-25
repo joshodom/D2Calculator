@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ArmorSlotsComponent } from './armor-slots/armor-slots.component';
+import { StatBoxComponent } from './armor-slots/stat-box/stat-box.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ArmorSlotsComponent
+    ArmorSlotsComponent,
+    StatBoxComponent
   ],
   imports: [
     BrowserModule,

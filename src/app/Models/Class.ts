@@ -4,7 +4,7 @@ export class Class {
   BaseDexterity: number;
 
   constructor(name: string) {
-    switch(name.toLowerCase()) {
+    switch (name.toLowerCase()) {
       case "amazon": {
         this.getAmazonStats();
         break;
@@ -41,37 +41,37 @@ export class Class {
     }
   }
 
-  private getAmazonStats(): void {
+  getAmazonStats(): void {
     this.Name = "Amazon";
     this.BaseStrength = 20;
     this.BaseDexterity = 25;
   }
-  private getAssassinStats(): void {
+  getAssassinStats(): void {
     this.Name = "Assassin";
     this.BaseStrength = 20;
     this.BaseDexterity = 20;
   }
-  private getBarbarianStats(): void {
+  getBarbarianStats(): void {
     this.Name = "Barbarian";
     this.BaseStrength = 30;
     this.BaseDexterity = 20;
   }
-  private getDruidStats(): void {
+  getDruidStats(): void {
     this.Name = "Druid";
     this.BaseStrength = 15;
     this.BaseDexterity = 20;
   }
-  private getNecromancerStats(): void {
+  getNecromancerStats(): void {
     this.Name = "Necromancer";
     this.BaseStrength = 15;
     this.BaseDexterity = 25;
   }
-  private getPaladinStats(): void {
+  getPaladinStats(): void {
     this.Name = "Paladin";
     this.BaseStrength = 25;
     this.BaseDexterity = 20;
   }
-  private getSorceressStats(): void {
+  getSorceressStats(): void {
     this.Name = "Sorceress";
     this.BaseStrength = 10;
     this.BaseDexterity = 25;
