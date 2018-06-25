@@ -3,12 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { Class } from "../Models/Class";
 
 @Component({
-  selector: 'armor-slots',
-  templateUrl: './armor-slots.component.html',
-  styleUrls: ['./armor-slots.component.css']
+  selector: 'equipment',
+  templateUrl: './equipment.component.html',
+  styleUrls: ['./equipment.component.css']
 })
 
-export class ArmorSlotsComponent implements OnInit {
+export class EquipmentComponent implements OnInit {
   myCharacter: Character;
   ClassList: Array<Class>;
   selectedClass: Class;

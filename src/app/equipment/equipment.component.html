@@ -1,0 +1,57 @@
+<div>
+  <div>
+    <form [(ngModel)]="myCharacter">
+      <div class="continer">
+        <div class="row">
+          <div class="col col1">
+            <div>
+              <p>Level:
+                <input type="text" name="level" [(ngModel)]="myCharacter.Level" />
+              </p>
+            </div>
+            <div>Stat points available: {{myCharacter.Level * 5}}</div>
+            <div>
+              <label for="selectClass">Class:</label>
+              <select class="form-control" id="selectClass" [(ngModel)]="selectedClass" name="selectedClass">
+                <option *ngFor="let c of ClassList" value="{{c}}">{{c.Name}}</option>
+              </select>
+            </div>
+            <div *ngIf="selectedClass !== undefined" class="row">
+              <div class="col col1 col-sm-2 text-center">Items
+                <div *ngFor="let i of myCharacter.Items" class="text-left">{{i.Slot}}:
+                </div>
+              </div>
+              <div class="col col2 col-sm-2 text-center">Required Str
+                <div *ngFor="let i of myCharacter.Items">
+                  <input type="text" class="text-center" name="{{i.Slot}}" [(ngModel)]="i.RequiredStr" />
+                </div>
+              </div>
+              <div class="col col3 col-sm-2 text-center">Required Dex
+                <div *ngFor="let i of myCharacter.Items">
+                  <input type="text" class="text-center" name="{{i.Slot}}" [(ngModel)]="i.RequiredDex" />
+                </div>
+              </div>
+              <div class="col col4 col-sm-2 text-center">Added Str
+                  <div *ngFor="let i of myCharacter.Items">
+                    <input type="text" class="text-center" name="{{i.Slot}}" [(ngModel)]="i.AddedStr" />
+                  </div>
+                </div>
+                <div class="col col5 col-sm-2 text-center">Added Dex
+                    <div *ngFor="let i of myCharacter.Items">
+                      <input type="text" class="text-center" name="{{i.Slot}}" [(ngModel)]="i.AddedDex" />
+                    </div>
+                  </div>
+            </div>
+          </div>
+          <div class="col col2">
+            <div>Order of Equip
+              <ol>
+                <li></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
