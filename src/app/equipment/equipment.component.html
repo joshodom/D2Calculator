@@ -17,30 +17,20 @@
               </select>
             </div>
             <div *ngIf="selectedClass !== undefined" class="row">
-              <div class="col col1 col-sm-2 text-center">Items
-                <div *ngFor="let i of myCharacter.Items" class="text-left">{{i.Slot}}:
-                </div>
-              </div>
-              <div class="col col2 col-sm-2 text-center">Required Str
-                <div *ngFor="let i of myCharacter.Items">
-                  <input type="text" class="text-center" name="{{i.Slot}}" [(ngModel)]="i.RequiredStr" />
-                </div>
-              </div>
-              <div class="col col3 col-sm-2 text-center">Required Dex
-                <div *ngFor="let i of myCharacter.Items">
-                  <input type="text" class="text-center" name="{{i.Slot}}" [(ngModel)]="i.RequiredDex" />
-                </div>
-              </div>
-              <div class="col col4 col-sm-2 text-center">Added Str
-                  <div *ngFor="let i of myCharacter.Items">
-                    <input type="text" class="text-center" name="{{i.Slot}}" [(ngModel)]="i.AddedStr" />
-                  </div>
-                </div>
-                <div class="col col5 col-sm-2 text-center">Added Dex
-                    <div *ngFor="let i of myCharacter.Items">
-                      <input type="text" class="text-center" name="{{i.Slot}}" [(ngModel)]="i.AddedDex" />
-                    </div>
-                  </div>
+              <table>
+                <th>Slot</th>
+                <th>Required Strength</th>
+                <th>Required Dexterity</th>
+                <th>Bonus Strength</th>
+                <th>Bonus Dexterity</th>
+                <tr *ngFor="let i of myCharacter.Items">
+                  <td>{{i.Slot}}</td>
+                  <td class="text-center">{{i.RequiredStr}}</td>
+                  <td class="text-center">{{i.RequiredDex}}</td>
+                  <td class="text-center">{{i.AddedStr}}</td>
+                  <td class="text-center">{{i.AddedDex}}</td>
+                </tr>
+              </table>
             </div>
           </div>
           <div class="col col2">
