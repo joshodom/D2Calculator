@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { EquipmentComponent } from './equipment/equipment.component';
+import { BaseInformationComponent } from './base-information/base-information.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EquipmentComponent
+    EquipmentComponent,
+    BaseInformationComponent
   ],
   imports: [
     BrowserModule,

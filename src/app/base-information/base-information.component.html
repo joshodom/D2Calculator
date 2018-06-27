@@ -1,0 +1,19 @@
+<form #f="ngForm">
+  <select name="class" ngModel #class="ngModel">
+    <option value="" disabled>Choose a class</option>
+    <option *ngFor="let class of ClassList" [ngValue]="class">
+      {{ class.Name }}
+    </option>
+  </select>
+
+<div *ngIf="f.dirty">
+  <p>Class Strength: {{ class.value.BaseStrength }}</p>
+  <p>Class Dexterity: {{ class.value.BaseDexterity }}</p>
+</div>
+<div>Items: <br />
+  <div *ngFor="let item of Items">
+    {{item.Slot}}
+  </div>
+</div>
+
+</form>
