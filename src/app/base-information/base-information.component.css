@@ -1,0 +1,11 @@
+.col {
+    border: 1px solid black;
+    color: black;
+}
+.col1 {
+    background: gray !important;
+}
+
+input {
+    min-width: 100%;
+}

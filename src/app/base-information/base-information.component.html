@@ -6,14 +6,26 @@
     </option>
   </select>
 
-<div *ngIf="f.dirty">
+<div *ngIf="class.dirty">
   <p>Class Strength: {{ class.value.BaseStrength }}</p>
   <p>Class Dexterity: {{ class.value.BaseDexterity }}</p>
 </div>
-<div>Items: <br />
-  <div *ngFor="let item of Items">
-    {{item.Slot}}
-  </div>
-</div>
+  <br />
+  <div class="container">
+    <div class="row" *ngFor="let item of Items">
+      <div class="col col1">{{item.Slot}}</div>
+      <div class="col col2"><input type="number" maxlength="2" max="99" min='0' name="{{item.Slot + 'RequiredStr'}}" (change)="updateTotals($event)" (input)="updateTotals($event)" [(ngModel)]="item.RequiredStr" /></div>
+      <div class="col col3"><input type="number" max="99" min='0' name="{{item.Slot + 'RequiredDex'}}" (change)="updateTotals($event)" (input)="updateTotals($event)" [(ngModel)]="item.RequiredDex" /></div>
+      <div class="col col4"><input type="number" max="99" min='0' name="{{item.Slot + 'AddedStr'}}" (change)="updateTotals($event)" (input)="updateTotals($event)" [(ngModel)]="item.AddedStr" /></div>
+      <div class="col col5"><input type="number" max="99" min='0' name="{{item.Slot + 'AddedDex'}}" (change)="updateTotals($event)" (input)="updateTotals($event)" [(ngModel)]="item.AddedDex" /></div>
+    </div>
+    <div class="row">
+      <div class="col col1">Totals</div>
+      <div class="col col2">{{totalRequiredStr}}</div>
+      <div class="col col3">{{totalRequiredDex}}</div>
+      <div class="col col4">{{totalAddedStr}}</div>
+      <div class="col col5">{{totalAddedDex}}</div>
+    </div>
+  </div><!-- end of container for stat input -->
 
 </form>
