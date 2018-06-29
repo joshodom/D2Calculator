@@ -19,6 +19,7 @@ export class BaseInformationComponent implements OnInit {
   totalAddedDex: number;
   constructor() {
     let classGetter = new Classes();
+    this.equip = new Array<Slot>();
     this.Items = new Array<Item>();
     this.Items.push(new Item(Slot.Neck));
     this.Items.push(new Item(Slot.Ring1));
@@ -37,7 +38,10 @@ export class BaseInformationComponent implements OnInit {
   }
 
   updateTotals(): void {
-    let totalStr = 0,totalDex = 0,addedStr = 0,addedDex = 0;
+    let totalStr = 0,
+      totalDex = 0,
+      addedStr = 0,
+      addedDex = 0;
     this.Items.forEach(function(item) {
       if (!!item) {
         totalStr += item.RequiredStr;
@@ -45,11 +49,36 @@ export class BaseInformationComponent implements OnInit {
         addedStr += item.AddedStr;
         addedDex += item.AddedDex;
       }
-    });//cannot use class variables inside the foreach, doing so outside
+    }); //cannot use class variables inside the foreach, doing so outside
     this.totalRequiredStr = totalStr;
     this.totalRequiredDex = totalDex;
     this.totalAddedStr = addedStr;
     this.totalAddedDex = addedDex;
+  }
+
+  sortItems(): void {
+    let tempArray = new Array<Item>();
+    let endOfArray = new Array<Item>();
+    let localEquip = new Array<Slot>();
+    this.Items.forEach(function(item) {
+      if (item.RequiredLevel) {
+        tempArray.push(item);
+      } else {
+        endOfArray.push(item);
+      }
+    });
+    tempArray.concat(endOfArray);
+    tempArray.sort(this.compare);
+    tempArray.forEach(function(temp) {
+      localEquip.push(temp.Slot);
+    });
+    this.equip = localEquip;
+  }
+
+  compare(a: Item, b: Item): number {
+    if (a.RequiredLevel < b.RequiredLevel) return -1;
+    if (a.RequiredLevel > b.RequiredLevel) return 1;
+    return 0;
   }
 
   ngOnInit() {}
