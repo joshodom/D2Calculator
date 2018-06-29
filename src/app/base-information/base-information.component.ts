@@ -11,7 +11,7 @@ import { Slot } from '../Models/Slot';
 })
 export class BaseInformationComponent implements OnInit {
   ClassList: Array<Class>;
-  changes: any[];
+  equip: Array<Slot>;
   Items: Array<Item>;
   totalRequiredStr: number;
   totalRequiredDex: number;
@@ -37,22 +37,19 @@ export class BaseInformationComponent implements OnInit {
   }
 
   updateTotals(): void {
-    console.log('totals called!');
     let totalStr = 0,totalDex = 0,addedStr = 0,addedDex = 0;
     this.Items.forEach(function(item) {
       if (!!item) {
-        console.log(`${item.Slot} has reached the inner if statement and isn't null, proof: ${JSON.stringify(item)}`);
         totalStr += item.RequiredStr;
         totalDex += item.RequiredDex;
         addedStr += item.AddedStr;
         addedDex += item.AddedDex;
       }
-    });
+    });//cannot use class variables inside the foreach, doing so outside
     this.totalRequiredStr = totalStr;
     this.totalRequiredDex = totalDex;
     this.totalAddedStr = addedStr;
     this.totalAddedDex = addedDex;
-    console.log(`totals now: ${this.totalRequiredStr}, ${this.totalRequiredDex}, ${this.totalAddedStr}, ${this.totalAddedDex}`)
   }
 
   ngOnInit() {}

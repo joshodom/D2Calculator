@@ -12,6 +12,13 @@
 </div>
   <br />
   <div class="container">
+    <div class="row text-center">
+      <div class="col col1">Slot</div>
+      <div class="col col2">Required Strength</div>
+      <div class="col col3">Required Dexterity</div>
+      <div class="col col4">Additional Strength</div>
+      <div class="col col5">Additional Dexterity</div>
+    </div>
     <div class="row" *ngFor="let item of Items">
       <div class="col col1">{{item.Slot}}</div>
       <div class="col col2"><input type="number" maxlength="2" max="99" min='0' name="{{item.Slot + 'RequiredStr'}}" (change)="updateTotals($event)" (input)="updateTotals($event)" [(ngModel)]="item.RequiredStr" /></div>
@@ -27,5 +34,11 @@
       <div class="col col5">{{totalAddedDex}}</div>
     </div>
   </div><!-- end of container for stat input -->
-
+  <br />
+  <div>
+    Optimal equip order:
+  </div>
+  <ol>
+    <li *ngFor="let e of equip">{{e}}</li>
+  </ol>
 </form>
