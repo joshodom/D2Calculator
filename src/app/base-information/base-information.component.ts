@@ -11,7 +11,7 @@ import { Slot } from '../Models/Slot';
 })
 export class BaseInformationComponent implements OnInit {
   ClassList: Array<Class>;
-  equip: Array<Slot>;
+  equip: Array<Item>;
   Items: Array<Item>;
   totalRequiredStr: number;
   totalRequiredDex: number;
@@ -19,7 +19,7 @@ export class BaseInformationComponent implements OnInit {
   totalAddedDex: number;
   constructor() {
     let classGetter = new Classes();
-    this.equip = new Array<Slot>();
+    this.equip = new Array<Item>();
     this.Items = new Array<Item>();
     this.Items.push(new Item(Slot.Neck));
     this.Items.push(new Item(Slot.Ring1));
@@ -38,20 +38,14 @@ export class BaseInformationComponent implements OnInit {
   }
 
   updateTotals(): void {
-    let totalStr = 0,
-      totalDex = 0,
-      addedStr = 0,
+    let addedStr = 0,
       addedDex = 0;
     this.Items.forEach(function(item) {
       if (!!item) {
-        totalStr += item.RequiredStr;
-        totalDex += item.RequiredDex;
         addedStr += item.AddedStr;
         addedDex += item.AddedDex;
       }
     }); //cannot use class variables inside the foreach, doing so outside
-    this.totalRequiredStr = totalStr;
-    this.totalRequiredDex = totalDex;
     this.totalAddedStr = addedStr;
     this.totalAddedDex = addedDex;
   }
@@ -69,10 +63,7 @@ export class BaseInformationComponent implements OnInit {
     });
     tempArray.concat(endOfArray);
     tempArray.sort(this.compare);
-    tempArray.forEach(function(temp) {
-      localEquip.push(temp.Slot);
-    });
-    this.equip = localEquip;
+    this.equip = tempArray;
   }
 
   compare(a: Item, b: Item): number {

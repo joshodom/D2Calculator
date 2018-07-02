@@ -1,11 +1,22 @@
 .col {
     border: 1px solid black;
-    color: black;
+    color: #4850B8;
 }
-.col1 {
+
+input, li {
+    color: #4850B8;
+}
+
+.col1, .col-lg-8 {
     background: gray !important;
 }
 
 input {
     min-width: 100%;
+}
+
+.header, .col1, .col-lg-8 {
+    background: #4d2617 !important;
+    color: #908858;
+    font-family: Arial, Helvetica;
 }
