@@ -50,10 +50,9 @@ export class BaseInformationComponent implements OnInit {
     this.totalAddedDex = addedDex;
   }
 
-  sortItems(): void {
+  sortItemsByLevel(): void {
     let tempArray = new Array<Item>();
     let endOfArray = new Array<Item>();
-    let localEquip = new Array<Slot>();
     this.Items.forEach(function(item) {
       if (item.RequiredLevel) {
         tempArray.push(item);
@@ -64,6 +63,22 @@ export class BaseInformationComponent implements OnInit {
     tempArray.concat(endOfArray);
     tempArray.sort(this.compare);
     this.equip = tempArray;
+  }
+
+  sortItemsByLowestReqStr(event): void {
+    console.log(`received ${JSON.stringify(event)} in sortItemsByLowestReqStr`);
+    let lowestReq = 100;
+    let highestReq = 0;
+    this.Items.forEach(function (item) {
+      if (item.RequiredStr > highestReq) {
+        highestReq = item.RequiredStr;
+      }
+
+      if (item.RequiredStr < lowestReq) {
+        lowestReq = item.RequiredStr;
+      }
+    });
+    console.log(`the lowest required is ${lowestReq} and the highest is ${highestReq} `)
   }
 
   compare(a: Item, b: Item): number {
