@@ -52,38 +52,22 @@ export class BaseInformationComponent implements OnInit {
 
   sortItemsByLevel(): void {
     let tempArray = new Array<Item>();
-    let endOfArray = new Array<Item>();
     this.Items.forEach(function(item) {
-      if (item.RequiredLevel) {
         tempArray.push(item);
-      } else {
-        endOfArray.push(item);
-      }
     });
-    tempArray.concat(endOfArray);
-    tempArray.sort(this.compare);
+    tempArray.sort(this.compareLevel);
     this.equip = tempArray;
   }
 
-  sortItemsByLowestReqStr(event): void {
-    console.log(`received ${JSON.stringify(event)} in sortItemsByLowestReqStr`);
-    let lowestReq = 100;
-    let highestReq = 0;
-    this.Items.forEach(function (item) {
-      if (item.RequiredStr > highestReq) {
-        highestReq = item.RequiredStr;
-      }
-
-      if (item.RequiredStr < lowestReq) {
-        lowestReq = item.RequiredStr;
-      }
-    });
-    console.log(`the lowest required is ${lowestReq} and the highest is ${highestReq} `)
-  }
-
-  compare(a: Item, b: Item): number {
+  compareLevel(a: Item, b: Item): number {
     if (a.RequiredLevel < b.RequiredLevel) return -1;
     if (a.RequiredLevel > b.RequiredLevel) return 1;
+    return 0;
+  }
+
+  compareStrength(a: Item, b: Item): number {
+    if (a.RequiredStr < b.RequiredStr) return -1;
+    if (a.RequiredStr > b.RequiredStr) return 1;
     return 0;
   }
 

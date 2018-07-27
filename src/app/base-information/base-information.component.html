@@ -7,8 +7,8 @@
   </select>
 
 <div *ngIf="class.dirty">
-  <p>Class Strength: {{ class.value.BaseStrength }}</p>
-  <p>Class Dexterity: {{ class.value.BaseDexterity }}</p>
+  <p>Base Strength: {{ class.value.BaseStrength }}</p>
+  <p>Base Dexterity: {{ class.value.BaseDexterity }}</p>
 </div>
   <br />
   <div class="container">
@@ -17,13 +17,13 @@
       <div class="col col2 header">Required Level</div>
       <div class="col col3 header">Required Strength</div>
       <div class="col col4 header">Required Dexterity</div>
-      <div class="col col5 header">Additional Strength</div>
-      <div class="col col6 header">Additional Dexterity</div>
+      <div class="col col5 header">Strength From Item</div>
+      <div class="col col6 header">Dexterity From Item</div>
     </div>
     <div class="row" *ngFor="let item of Items">
-      <div class="col col1">{{item.Slot}}</div>
+      <div class="col col1">{{item.Slot | titlecase}}</div>
       <div class="col col2"><input type="number" max="99" min="1" name="{{item.RequiredLevel}}" (change)="sortItemsByLevel($event)" (input)="sortItemsByLevel($event)" [(ngModel)]="item.RequiredLevel" /></div>
-      <div class="col col3"><input type="number" maxlength="2" max="99" min='0' name="{{item.Slot + 'RequiredStr'}}" (change)="sortItemsByLowestReqStr($event)" (input)="sortItemsByLowestReqStr($event)" [(ngModel)]="item.RequiredStr" /></div>
+      <div class="col col3"><input type="number" maxlength="2" max="99" min='0' name="{{item.Slot + 'RequiredStr'}}" (change)="updateTotals($event)" (input)="updateTotals($event)" [(ngModel)]="item.RequiredStr" /></div>
       <div class="col col4"><input type="number" max="99" min='0' name="{{item.Slot + 'RequiredDex'}}" (change)="updateTotals($event)" (input)="updateTotals($event)" [(ngModel)]="item.RequiredDex" /></div>
       <div class="col col5"><input type="number" max="99" min='0' name="{{item.Slot + 'AddedStr'}}" (change)="updateTotals($event)" (input)="updateTotals($event)" [(ngModel)]="item.AddedStr" /></div>
       <div class="col col6"><input type="number" max="99" min='0' name="{{item.Slot + 'AddedDex'}}" (change)="updateTotals($event)" (input)="updateTotals($event)" [(ngModel)]="item.AddedDex" /></div>
@@ -39,6 +39,6 @@
     Optimal equip order:
   </div>
   <ol>
-    <li *ngFor="let e of equip">{{e.Slot}} - Required Level: {{e.RequiredLevel}}</li>
+    <li *ngFor="let e of equip">{{e.Slot}} - Required Level: {{e.RequiredLevel}}; Required Strength: {{e.RequiredStr}}</li>
   </ol>
 </form>
