@@ -35,6 +35,17 @@
     </div>
   </div><!-- end of container for stat input -->
   <br />
+  <div>Minimum Strength Needed: {{minimumRequiredStr}}</div>
+  <div>Minimum Dexterity Needed: {{minimumRequiredDex}}</div>
+  <br />
+  <div>
+    Sort By: <select name="sortBy" (change)="sortItemsByLevel($event)" ngModel #sortBy="ngModel">
+      <option value="" disabled>Select...</option>
+      <option *ngFor="let sortType of Sorts" [ngValue]="sortBy">
+        {{ sortType }}
+      </option>
+    </select>
+  </div>
   <div style="color: #908858;">
     Optimal equip order:
   </div>
