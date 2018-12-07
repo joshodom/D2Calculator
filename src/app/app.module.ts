@@ -3,13 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { EquipmentComponent } from './equipment/equipment.component';
 import { BaseInformationComponent } from './base-information/base-information.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EquipmentComponent,
     BaseInformationComponent
   ],
   imports: [

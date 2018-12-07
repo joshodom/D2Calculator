@@ -16,6 +16,7 @@ export class BaseInformationComponent implements OnInit {
   Items: Array<Item>;
   minimumRequiredStr: number;
   minimumRequiredDex: number;
+  minimumRequiredLvl: number;
   totalAddedStr: number;
   totalAddedDex: number;
   constructor() {
@@ -31,55 +32,26 @@ export class BaseInformationComponent implements OnInit {
     this.Items.push(new Item(Slot.Gloves));
     this.Items.push(new Item(Slot.Belt));
     this.Items.push(new Item(Slot.Boots));
-    this.minimumRequiredStr = 0;
-    this.minimumRequiredDex = 0;
-    this.totalAddedStr = 0;
-    this.totalAddedDex = 0;
+    this.equip = this.Items.slice(0);
     this.ClassList = classGetter.get();
-    this.Sorts = new Array<string>();
-    this.Sorts.push("Strength");
-    this.Sorts.push("Dexterity");
-    this.Sorts.push("Level");
   }
 
   updateTotals(): void {
-    let lowestStr = 0,
-      lowestDex = 0,
-      addedStr = 0,
-      addedDex = 0;
-    this.Items.forEach(function(item) {
-      if (!!item) {
-        addedStr += item.AddedStr;
-        addedDex += item.AddedDex;
-
-        if (item.RequiredDex > lowestDex) {
-          lowestDex = item.RequiredDex;
-        }
-        if (item.RequiredStr > lowestStr) {
-          lowestStr = item.RequiredStr;
-        }
-      }
-    });
-    this.totalAddedStr = addedStr;
-    this.totalAddedDex = addedDex;
-    this.minimumRequiredDex = lowestDex;
-    this.minimumRequiredStr = lowestStr;
+    this.equip.sort(this.sortByStrength);
   }
 
-  sortItemsByLevel(): void {
-    let tempArray = new Array<Item>();
-    this.Items.forEach(function(item) {
-      tempArray.push(item);
-    });
-    tempArray.sort(this.compareLevel);
-    this.equip = tempArray;
-  }
-
-  compareLevel(a: Item, b: Item): number {
-    if (a.RequiredLevel < b.RequiredLevel) return -1;
-    if (a.RequiredLevel > b.RequiredLevel) return 1;
+  sortByStrength(a, b): number {
+    if (a.RequiredStr > b.RequiredStr) return 1;
+    if (a.RequiredStr < b.RequiredStr) return -1;
     return 0;
   }
 
-  ngOnInit() {}
+  sortByDexterity(a, b): number {
+    if (a.RequiredDex > b.RequiredDex) return 1;
+    if (a.RequiredDex < b.RequiredDex) return -1;
+    return 0;
+  }
+
+  ngOnInit() {
+  }
 }
